@@ -1,0 +1,117 @@
+{
+  "dataset_name": "sample_orders",
+  "created_at": "2026-04-04T23:22:39Z",
+  "record_count": 5,
+  "orders": [
+    {
+      "order_id": 1001,
+      "customer": {
+        "customer_id": "C001",
+        "name": "Amina Tesfai",
+        "email": "amina.tesfai@example.com",
+        "location": {
+          "city": "Seattle",
+          "state": "WA"
+        },
+        "is_member": true
+      },
+      "order_details": {
+        "order_date": "2026-03-28",
+        "product": "Wireless Mouse",
+        "category": "Electronics",
+        "quantity": 2,
+        "unit_price": 24.99,
+        "discount_pct": 0.1
+      },
+      "notes": "Leave at front desk"
+    },
+    {
+      "order_id": 1002,
+      "customer": {
+        "customer_id": "C002",
+        "name": "Daniel Okbazghi",
+        "email": "daniel.okbazghi@example.com",
+        "location": {
+          "city": "Tacoma",
+          "state": "WA"
+        },
+        "is_member": false
+      },
+      "order_details": {
+        "order_date": "2026-03-29",
+        "product": "Notebook Set",
+        "category": "Office",
+        "quantity": 3,
+        "unit_price": 7.5,
+        "discount_pct": 0.0
+      },
+      "notes": "Gift wrap requested"
+    },
+    {
+      "order_id": 1003,
+      "customer": {
+        "customer_id": "C003",
+        "name": "Sara Ahmed",
+        "email": "sara.ahmed@example.com",
+        "location": {
+          "city": "Bellevue",
+          "state": "WA"
+        },
+        "is_member": true
+      },
+      "order_details": {
+        "order_date": "2026-03-30",
+        "product": "Water Bottle",
+        "category": "Lifestyle",
+        "quantity": 1,
+        "unit_price": 18.75,
+        "discount_pct": 0.05
+      },
+      "notes": "Customer prefers email updates"
+    },
+    {
+      "order_id": 1004,
+      "customer": {
+        "customer_id": "C004",
+        "name": "Mikael Johnson",
+        "email": "mikael.johnson@example.com",
+        "location": {
+          "city": "Redmond",
+          "state": "WA"
+        },
+        "is_member": false
+      },
+      "order_details": {
+        "order_date": "2026-03-31",
+        "product": "Standing Desk Lamp",
+        "category": "Home",
+        "quantity": 1,
+        "unit_price": 45.0,
+        "discount_pct": 0.15
+      },
+      "notes": "Deliver after 5 PM"
+    },
+    {
+      "order_id": 1005,
+      "customer": {
+        "customer_id": "C005",
+        "name": "Liya Gebre",
+        "email": "liya.gebre@example.com",
+        "location": {
+          "city": "Kent",
+          "state": "WA"
+        },
+        "is_member": true
+      },
+      "order_details": {
+        "order_date": "2026-04-01",
+        "product": "USB-C Cable",
+        "category": "Electronics",
+        "quantity": 4,
+        "unit_price": 9.99,
+        "discount_pct": 0.0
+      },
+      "notes": "Include receipt in box"
+    }
+  ]
+}

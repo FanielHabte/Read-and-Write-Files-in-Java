@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+  <order id="1001">
+    <customer id="C001">
+      <name>Amina Tesfai</name>
+      <email>amina.tesfai@example.com</email>
+      <city>Seattle</city>
+      <state>WA</state>
+      <isMember>true</isMember>
+    </customer>
+    <orderDate>2026-03-28</orderDate>
+    <product>Wireless Mouse</product>
+    <category>Electronics</category>
+    <quantity>2</quantity>
+    <unitPrice>24.99</unitPrice>
+    <discountPct>0.10</discountPct>
+    <notes>Leave at front desk</notes>
+  </order>
+  <order id="1002">
+    <customer id="C002">
+      <name>Daniel Okbazghi</name>
+      <email>daniel.okbazghi@example.com</email>
+      <city>Tacoma</city>
+      <state>WA</state>
+      <isMember>false</isMember>
+    </customer>
+    <orderDate>2026-03-29</orderDate>
+    <product>Notebook Set</product>
+    <category>Office</category>
+    <quantity>3</quantity>
+    <unitPrice>7.50</unitPrice>
+    <discountPct>0.00</discountPct>
+    <notes>Gift wrap requested</notes>
+  </order>
+  <order id="1003">
+    <customer id="C003">
+      <name>Sara Ahmed</name>
+      <email>sara.ahmed@example.com</email>
+      <city>Bellevue</city>
+      <state>WA</state>
+      <isMember>true</isMember>
+    </customer>
+    <orderDate>2026-03-30</orderDate>
+    <product>Water Bottle</product>
+    <category>Lifestyle</category>
+    <quantity>1</quantity>
+    <unitPrice>18.75</unitPrice>
+    <discountPct>0.05</discountPct>
+    <notes>Customer prefers email updates</notes>
+  </order>
+  <order id="1004">
+    <customer id="C004">
+      <name>Mikael Johnson</name>
+      <email>mikael.johnson@example.com</email>
+      <city>Redmond</city>
+      <state>WA</state>
+      <isMember>false</isMember>
+    </customer>
+    <orderDate>2026-03-31</orderDate>
+    <product>Standing Desk Lamp</product>
+    <category>Home</category>
+    <quantity>1</quantity>
+    <unitPrice>45.00</unitPrice>
+    <discountPct>0.15</discountPct>
+    <notes>Deliver after 5 PM</notes>
+  </order>
+  <order id="1005">
+    <customer id="C005">
+      <name>Liya Gebre</name>
+      <email>liya.gebre@example.com</email>
+      <city>Kent</city>
+      <state>WA</state>
+      <isMember>true</isMember>
+    </customer>
+    <orderDate>2026-04-01</orderDate>
+    <product>USB-C Cable</product>
+    <category>Electronics</category>
+    <quantity>4</quantity>
+    <unitPrice>9.99</unitPrice>
+    <discountPct>0.00</discountPct>
+    <notes>Include receipt in box</notes>
+  </order>
+</orders>

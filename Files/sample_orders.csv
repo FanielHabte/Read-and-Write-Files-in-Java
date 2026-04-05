@@ -1,0 +1,6 @@
+order_id,customer_id,customer_name,email,city,state,order_date,product,category,quantity,unit_price,discount_pct,is_member,notes
+1001,C001,Amina Tesfai,amina.tesfai@example.com,Seattle,WA,2026-03-28,Wireless Mouse,Electronics,2,24.99,0.1,True,Leave at front desk
+1002,C002,Daniel Okbazghi,daniel.okbazghi@example.com,Tacoma,WA,2026-03-29,Notebook Set,Office,3,7.5,0.0,False,Gift wrap requested
+1003,C003,Sara Ahmed,sara.ahmed@example.com,Bellevue,WA,2026-03-30,Water Bottle,Lifestyle,1,18.75,0.05,True,Customer prefers email updates
+1004,C004,Mikael Johnson,mikael.johnson@example.com,Redmond,WA,2026-03-31,Standing Desk Lamp,Home,1,45.0,0.15,False,Deliver after 5 PM
+1005,C005,Liya Gebre,liya.gebre@example.com,Kent,WA,2026-04-01,USB-C Cable,Electronics,4,9.99,0.0,True,Include receipt in box
