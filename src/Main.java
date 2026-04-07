@@ -39,10 +39,13 @@ public class Main {
                         case "xml" -> parse.xmlFile();
                     }
                  }
+
                 catch (IOException e) {
                     System.out.println("Error occurred while reading the file!\n" + e);
                 }
+
                 break;
+
             }
 
             catch(FileNotFoundException e){
