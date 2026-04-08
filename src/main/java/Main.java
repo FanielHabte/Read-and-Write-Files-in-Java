@@ -1,3 +1,6 @@
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -36,12 +39,17 @@ public class Main {
                         case "json" -> parse.jsonFile();
                         case "parquet" -> parse.parquetFile();
                         case "txt" -> parse.textFile();
-                        case "xml" -> parse.xmlFile();
+                        case "xml" -> parse.xmlFile(filePath);
                     }
                  }
-
                 catch (IOException e) {
                     System.out.println("Error occurred while reading the file!\n" + e);
+                }
+                catch (ParserConfigurationException e) {
+                    System.out.println("Error occurred during configuring the xml parsing!\n" + e);
+                }
+                catch (SAXException e) {
+                    System.out.println("Error occurred while parsing the XML file!\n" + e);
                 }
 
                 break;

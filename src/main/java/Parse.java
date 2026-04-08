@@ -3,9 +3,23 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Parse {
 
@@ -104,13 +118,22 @@ public class Parse {
     }
 
     // Not Started
-    public void xmlFile () throws IOException {
-        while ((fileLine = bufferedReader.readLine()) != null) {
-            String [] values = fileLine.split("\\|");
-            for (String value: values) {
-                System.out.println(value);
+    public void xmlFile (String Filepath) throws ParserConfigurationException, SAXException, IOException{
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document document = dBuilder.parse(new File(Filepath));
+        document.getDocumentElement().normalize();
+
+        NodeList nodeList = document.getElementsByTagName("orders");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                System.out.println(element.getTextContent());
             }
         }
+
     }
 
 }
