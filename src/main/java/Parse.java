@@ -5,17 +5,15 @@ import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Parse {
+
     BufferedReader bufferedReader;
     String fileLine;
     ArrayList<Object> rowValues;
-    HashMap <Integer, ArrayList<Object>> dataSet = new HashMap<>();
-    int rowNumber = 0;
+    ArrayList<HashMap<String, Object>> dataSet = new ArrayList<>();
+    HashMap<String, Object> row;
 
     public Parse(BufferedReader bufferedReader) {
         this.bufferedReader = bufferedReader;
@@ -23,32 +21,37 @@ public class Parse {
 
     // Complete
     public void textFile () throws IOException {
+        ArrayList<String[]> allRows = new ArrayList<>();
         while ((fileLine = bufferedReader.readLine()) != null) {
-            String [] values = fileLine.split("\\|");
-            rowValues = new ArrayList<>(Arrays.asList(values));
-            if (rowNumber > 0) {
-                dataSet.put(rowNumber, rowValues);
+            String[] values = fileLine.split("\\|");
+            allRows.add(values);
+        }
+        for (int i = 0; i < allRows.size(); i++) {
+            row = new HashMap<>();
+            if (i > 0) {
+                for (int j = 0; j < Arrays.asList(allRows.getFirst()).size(); j++) {
+                    row.put(Arrays.asList(allRows.getFirst()).get(j), Arrays.asList(allRows.get(i)).get(j));
+                }
+                dataSet.add(row);
             }
-            rowNumber++;
         }
         System.out.println(dataSet);
     }
 
-    // Completed
+    // Json Reader - Completed
     public void jsonFile () throws IOException {
         Gson gson = new Gson();
         JsonObject sampleOrders = gson.fromJson(bufferedReader, JsonObject.class);
         JsonArray orders = sampleOrders.getAsJsonArray("orders");
-        HashMap<Integer, HashMap<String, Object>> dataset = new HashMap<>();
+        ArrayList<HashMap<String, Object>> dataset = new ArrayList<>();
         for (JsonElement order: orders) {
             HashMap<String, Object> rows = new HashMap<>();
-            rowNumber++;
             flatten(order, rows);
-            dataset.put(rowNumber,rows);
+            dataset.add(rows);
         }
         System.out.println(dataset);
     }
-
+    // Flattener
     public void flatten (JsonElement order, HashMap<String, Object> rows) {
         for (Map.Entry<String, JsonElement> entry : order.getAsJsonObject().entrySet()) {
             String key = entry.getKey();
@@ -73,13 +76,19 @@ public class Parse {
 
     // Complete
     public void csvFile () throws IOException {
+        ArrayList<String[]> allRows = new ArrayList<>();
         while ((fileLine = bufferedReader.readLine()) != null) {
-            Object [] stringValues = fileLine.split(",");
-            rowValues = new ArrayList<>(Arrays.asList(stringValues));
-            if (rowNumber > 0) {
-                dataSet.put(rowNumber,rowValues);
+            String[] values = fileLine.split(",");
+            allRows.add(values);
+        }
+        for (int i = 0; i < allRows.size(); i++) {
+            row = new HashMap<>();
+            if (i > 0) {
+                for (int j = 0; j < Arrays.asList(allRows.getFirst()).size(); j++) {
+                    row.put(Arrays.asList(allRows.getFirst()).get(j), Arrays.asList(allRows.get(i)).get(j));
+                }
+                dataSet.add(row);
             }
-            rowNumber++;
         }
         System.out.println(dataSet);
     }
