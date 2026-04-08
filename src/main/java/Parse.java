@@ -2,24 +2,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Parse {
 
@@ -117,23 +111,37 @@ public class Parse {
         }
     }
 
-    // Not Started
+    // Completed
     public void xmlFile (String Filepath) throws ParserConfigurationException, SAXException, IOException{
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document document = dBuilder.parse(new File(Filepath));
         document.getDocumentElement().normalize();
 
-        NodeList nodeList = document.getElementsByTagName("orders");
+        NodeList nodeList = document.getElementsByTagName("order");
+        for(int i = 0; i < nodeList.getLength(); i++) {
+            row = new HashMap<>();
+            Element element = (Element) nodeList.item(i);
+            Element customerElement = (Element) element.getElementsByTagName("customer").item(0);
 
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                System.out.println(element.getTextContent());
-            }
+            row.put(customerElement.getNodeName() + "_id", customerElement.getAttribute("id"));
+            row.put(customerElement.getNodeName() + "_" + customerElement.getElementsByTagName("name").item(0).getNodeName(), customerElement.getElementsByTagName("name").item(0).getTextContent());
+            row.put(customerElement.getNodeName() + "_" + customerElement.getElementsByTagName("email").item(0).getNodeName(), customerElement.getElementsByTagName("email").item(0).getTextContent());
+            row.put(customerElement.getNodeName() + "_" + customerElement.getElementsByTagName("city").item(0).getNodeName(), customerElement.getElementsByTagName("city").item(0).getTextContent());
+            row.put(customerElement.getNodeName() + "_" + customerElement.getElementsByTagName("state").item(0).getNodeName(), customerElement.getElementsByTagName("state").item(0).getTextContent());
+            row.put(customerElement.getNodeName() + "_" + customerElement.getElementsByTagName("isMember").item(0).getNodeName(), customerElement.getElementsByTagName("isMember").item(0).getTextContent());
+
+            row.put(element.getNodeName() + "_id", element.getAttribute("id"));
+            row.put(element.getElementsByTagName("orderDate").item(0).getNodeName(), element.getElementsByTagName("orderDate").item(0).getTextContent());
+            row.put(element.getElementsByTagName("product").item(0).getNodeName(), element.getElementsByTagName("product").item(0).getTextContent());
+            row.put(element.getElementsByTagName("category").item(0).getNodeName(), element.getElementsByTagName("category").item(0).getTextContent());
+            row.put(element.getElementsByTagName("quantity").item(0).getNodeName(), element.getElementsByTagName("quantity").item(0).getTextContent());
+            row.put(element.getElementsByTagName("unitPrice").item(0).getNodeName(), element.getElementsByTagName("unitPrice").item(0).getTextContent());
+            row.put(element.getElementsByTagName("discountPct").item(0).getNodeName(), element.getElementsByTagName("discountPct").item(0).getTextContent());
+            row.put(element.getElementsByTagName("notes").item(0).getNodeName(), element.getElementsByTagName("notes").item(0).getTextContent());
+
+            dataSet.add(row);
         }
-
+        System.out.println(dataSet);
     }
-
 }
