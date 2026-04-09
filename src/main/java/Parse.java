@@ -31,7 +31,7 @@ public class Parse {
     }
 
     // Complete
-    public void textFile () throws IOException {
+    public ArrayList<HashMap<String, Object>> textFile () throws IOException {
         ArrayList<String[]> allRows = new ArrayList<>();
         while ((fileLine = bufferedReader.readLine()) != null) {
             String[] values = fileLine.split("\\|");
@@ -46,11 +46,11 @@ public class Parse {
                 dataSet.add(row);
             }
         }
-        System.out.println(dataSet);
+        return dataSet;
     }
 
     // Json Reader - Completed
-    public void jsonFile () throws IOException {
+    public ArrayList<HashMap<String, Object>> jsonFile () throws IOException {
         Gson gson = new Gson();
         JsonObject sampleOrders = gson.fromJson(bufferedReader, JsonObject.class);
         JsonArray orders = sampleOrders.getAsJsonArray("orders");
@@ -60,7 +60,7 @@ public class Parse {
             flatten(order, rows);
             dataset.add(rows);
         }
-        System.out.println(dataset);
+        return dataset;
     }
     // Flattener
     public void flatten (JsonElement order, HashMap<String, Object> rows) {
@@ -86,7 +86,7 @@ public class Parse {
     }
 
     // Complete
-    public void csvFile () throws IOException {
+    public ArrayList<HashMap<String, Object>> csvFile () throws IOException {
         ArrayList<String[]> allRows = new ArrayList<>();
         while ((fileLine = bufferedReader.readLine()) != null) {
             String[] values = fileLine.split(",");
@@ -101,11 +101,11 @@ public class Parse {
                 dataSet.add(row);
             }
         }
-        System.out.println(dataSet);
+        return dataSet;
     }
 
     // Completed
-    public void htmlFile (String filePath) throws IOException {
+    public ArrayList<HashMap<String, Object>> htmlFile (String filePath) throws IOException {
         org.jsoup.nodes.Document document = Jsoup.parse(new File(filePath));
         ArrayList<String> columnNameList = new ArrayList<>();
         Elements elements = document.select("tr");
@@ -122,16 +122,18 @@ public class Parse {
             String rowValue = elements.select("td").get(i).text();
             String columnName = columnNameList.get(i%columnNameList.size());
             row.put(columnName, rowValue);
-            if (i%columnNameList.size() == 6) {
+            if (i % columnNameList.size() == columnNameList.size() - 1) {
                 dataSet.add(row);
                 row = new HashMap<>();
             }
         }
-        System.out.println(dataSet);
+
+        return dataSet;
+
     }
 
     // Completed
-    public void xmlFile (String Filepath) throws ParserConfigurationException, SAXException, IOException{
+    public ArrayList<HashMap<String, Object>> xmlFile (String Filepath) throws ParserConfigurationException, SAXException, IOException{
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document document = dBuilder.parse(new File(Filepath));
@@ -161,6 +163,6 @@ public class Parse {
 
             dataSet.add(row);
         }
-        System.out.println(dataSet);
+        return dataSet;
     }
 }
