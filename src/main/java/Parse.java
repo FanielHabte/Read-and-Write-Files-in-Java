@@ -2,6 +2,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -101,14 +104,30 @@ public class Parse {
         System.out.println(dataSet);
     }
 
-    // Not Started
-    public void htmlFile () throws IOException {
-        while ((fileLine = bufferedReader.readLine()) != null) {
-            String [] values = fileLine.split("\\|");
-            for (String value: values) {
-                System.out.println(value);
+    // Completed
+    public void htmlFile (String filePath) throws IOException {
+        org.jsoup.nodes.Document document = Jsoup.parse(new File(filePath));
+        ArrayList<String> columnNameList = new ArrayList<>();
+        Elements elements = document.select("tr");
+        row = new HashMap<>();
+
+        for (org.jsoup.nodes.Element columnName: elements.select("th")) {
+            String colName = columnName.text()
+                    .replace(" ", "_")
+                    .toLowerCase().strip();
+            columnNameList.add(colName);
+        }
+
+        for (int i = 0; i < elements.select("td").size(); i++) {
+            String rowValue = elements.select("td").get(i).text();
+            String columnName = columnNameList.get(i%columnNameList.size());
+            row.put(columnName, rowValue);
+            if (i%columnNameList.size() == 6) {
+                dataSet.add(row);
+                row = new HashMap<>();
             }
         }
+        System.out.println(dataSet);
     }
 
     // Completed

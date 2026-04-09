@@ -35,7 +35,7 @@ public class Main {
                 try {
                     switch (fileType) {
                         case "csv" -> parse.csvFile();
-                        case "html" -> parse.htmlFile();
+                        case "html" -> parse.htmlFile(filePath);
                         case "json" -> parse.jsonFile();
                         case "parquet" -> parse.parquetFile();
                         case "txt" -> parse.textFile();
